@@ -1,8 +1,8 @@
 const express = require('express');
 const ejs = require('ejs');
-
 var connection = require('./sqlConnection');
 const bodyParser = require('body-parser');
+
 
 const app = express();
 
@@ -20,7 +20,7 @@ app.get('/', (req, res) => {
 
 // Add the route for the list page
 app.get('/index', (req, res) => {
-    // Write the necessary code to get data from the database
+    
     connection.query(
       'SELECT * FROM items',
       (error, results) => {
@@ -47,20 +47,13 @@ app.post('/create', (req, res) => {
       // else console.log("Added");
           res.redirect('/index');
     })
-    // connection.query(
-    //   'INSERT INTO items (name) VALUES (?)' , [req.body.itemName], 
-    //   (error,results)=> {
-    //     if(err) console.log(err);
-    //     console.log("Records:"+results.affectedRows);
-        
-    //   });
+    
 
 });
 
 // Add a route for deleting items
 app.post('/delete/:id',(req,res)=>{
-  // console.log(req.params.id);
-  // res.redirect('/index');
+  
   connection.query(
     'DELETE FROM items where id=?',
     [req.params.id],(error,results)=>{
@@ -87,7 +80,6 @@ app.post('/update/:id',(req,res)=>{
     res.redirect('/index');
   });
 })
-
 
 
 app.listen(3001, () => console.log("port is running at server  port 3001"));
