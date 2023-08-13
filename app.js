@@ -3,19 +3,15 @@ const ejs = require('ejs');
 var connection = require('./sqlConnection');
 const bodyParser = require('body-parser');
 
-
 const app = express();
 
 app.use(express.static('./public1'));
 app.set('view engine', 'ejs');
 app.use(express.urlencoded({extended: false}));
 
-
-
 app.get('/', (req, res) => {
     res.render('top');
 });
-
 
 
 // Add the route for the list page
